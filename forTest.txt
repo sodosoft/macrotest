@@ -1,0 +1,51 @@
+import pyautogui
+from PIL import ImageGrab
+import pytesseract
+
+rgb = ''
+#red / green / blue pre-define
+red = (184,0,0)
+green = (34,177,76)
+blue = (0,0,255)
+
+def color_def(X, Y) : 
+        #screen-shot
+        screen = ImageGrab.grab()
+
+        #get current position and rgb        
+        pos = pyautogui.position(X, Y)
+        print(pos)
+        rgb = screen.getpixel(pos)
+        print(rgb[1])
+            
+        if rgb == red : print("red")
+        elif rgb == green : print("green")
+        elif rgb == blue : print("blue")
+        else : print("알 수 없음")
+
+for i in range(5):
+    
+    pyautogui.move(981,497 + (i * 21 + i))
+    # color_def(981, 497 + (i * 21 + i))    
+    screen = ImageGrab.grab()
+
+        #get current position and rgb        
+    pos = pyautogui.position(981, 497 + (i * 21 + i))
+    print(pos)
+    rgb = screen.getpixel(pos)
+    print(rgb[1])
+        
+    if rgb == red : print("red")
+    elif rgb == green : print("green")
+    elif rgb == blue : print("blue")
+    else : print("알 수 없음")
+        
+    if(rgb[1] == 176):
+       # 캡쳐 구간
+        img = ImageGrab.grab((1100, 490 + (i * 21+ i), 1135 , 506 + (i * 21+ i)))   
+        pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+        text = pytesseract.image_to_string(img)
+
+        print(text) 
+    else:   
+        continue
