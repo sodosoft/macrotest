@@ -15,8 +15,7 @@ win.title("HD DEMO")
 win.geometry('300x150')
 
 def btnClick():
-    position(1017, 675, 1053,694)
-    
+    position(1017, 675, 1053,694)    
     
     position(1017, 699, 1053,718)
     
